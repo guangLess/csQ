@@ -142,12 +142,10 @@ function intersect (A, B) {
 	smallA.forEach(ele => {
 		 if(!map.has(ele)) map.set(ele, 0)
 		 else {
-		 	console.log("-->", map.get(ele) + 1)
 		 	const occur = map.get(ele) + 1
 		 	map.set(ele, occur)
 		 }
 	})
-	console.log(map)
 	// depends on if the original array needs to be kept or not
 	bigger.forEach(ele => {
 		if (map.has(ele)) collect.push(ele)
@@ -156,8 +154,26 @@ function intersect (A, B) {
 }
 
 const intersectV = intersect([2,3,2],[1,2,2,3])
-console.log(intersectV)
+//console.log(intersectV)
 
+function addOne(D){
+	if (D.length === 0) {
+		D.push(1)
+		return D
+	}
+	const last = D.pop()
+	if (last < 9) {
+		D.push(last + 1)
+		return D
+	}
+	if (last === 9) {
+		addOne(D)
+		D.push(0)
+		return D
+	}
+}
+
+console.log("==>", addOne([9,9,9]))
 
 
 
