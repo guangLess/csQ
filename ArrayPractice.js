@@ -156,6 +156,7 @@ function intersect (A, B) {
 const intersectV = intersect([2,3,2],[1,2,2,3])
 //console.log(intersectV)
 
+// recursive solution also can just use while
 function addOne(D){
 	if (D.length === 0) {
 		D.push(1)
@@ -172,8 +173,41 @@ function addOne(D){
 		return D
 	}
 }
+//console.log("==>", addOne([9,9,9]))
 
-console.log("==>", addOne([9,9,9]))
+function moveZeros(A) {
+	let countZero = 0
+	for (let i = 0; i < A.length; i ++) {
+		if(A[i] === 0) {
+			A.splice(i,1)
+			i = i - 1
+			countZero += 1
+		}
+	}
+	let collect = Array(4).fill(0)
+	A.push(...collect)
+	return A
+}
+const zeroA = moveZeros([0,0,0,1,0,3,12])
+//console.log(zeroA)
+
+function moveZeroTwo(A){
+	let j = 0;
+	for (let i = 0; i < A.length; i ++) {
+		console.log('i=', i, 'j=', j)
+			if (A[i] != 0) {
+				if (j < i) {
+					let temp = A[j]
+						A[j] = A[i]
+						A[i] = temp
+   				}
+				j++
+			}
+	}
+	console.log("2 indices A", A)
+}
+
+moveZeroTwo([1,2,0,0,0,3])//,4,0,5,0])
 
 
 
