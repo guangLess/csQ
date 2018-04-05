@@ -18,7 +18,7 @@ const reverseStringTwo = (word) => {
 	} else return ""
 }
 //console.log("result = ",reverseStringTwo('hi baby'))
-
+// starts from both ends, this one is nice😎
 const reverseStringThree = (word) => {
 	const warray = word.split('')
 	let i = 0, j = warray.length-1
@@ -37,7 +37,7 @@ const reverseInts = num => {
 	let result
 	if (num<0) {
 		if (num%10 === 0) num = removeZero(num)// removed all 0s 
-		return reverseNum((num * -1)) // striped off - and 000s so -12  12, -12000 12
+		return reverseNum((num * -1))
 	}
 	if(num === 0) return 0
 	if(num > 0)  return reverseNum(num)
@@ -47,7 +47,6 @@ const reverseNum = n => {
 	//n is always a possitive int
 	//since ints are not a big array, we use JS build in method
 	const nString = n.toString().split('').reverse().join('') 
-	console.log(nString,n)
 	return parseInt(nString)
 }
 
@@ -62,3 +61,29 @@ const removeZero = n => {
 const result = reverseInts(120)
 console.log(result)
 
+const findFirstQ = words => {
+	let hash = new Map()
+	let result = ''
+	for(let i = 0; i < words.length; i++){
+		const ele = words[i]
+		if(hash.has(ele)) hash.set(ele, hash.get(ele)+1)
+		else hash.set(ele,1)
+	}
+	// hash.forEach( (value, key) => {
+	// 	//console.log(value, key)
+	// 	if (value === 1) {
+	// 		result = key
+	// 		break 
+	// 	}
+	// })
+	//let iterator = hash.entries()/ something travas to .next()  === 1) break
+	for(let [k,v] of hash){
+		if(v === 1) {
+			result = k
+			break
+		} 
+	}
+	return result
+}
+const first = findFirstQ('hello')
+console.log('first uniqe =', first)
