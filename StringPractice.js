@@ -86,7 +86,7 @@ const findFirstQ = words => {
 	return result
 }
 const first = findFirstQ('hello')
-console.log('first uniqe =', first)
+//sconsole.log('first uniqe =', first)
 
 //if one is two's anagram, anagram is very odd... why interviwers are so obsessed with it? 🙃
 const isAnagram = (one, two) => {
@@ -121,4 +121,14 @@ const isAnagram = (one, two) => {
 	return bool
 }
 console.log("isAnagram = ", isAnagram('cat', 'cat you'))
+
+const isPalindrome = words => {
+	words = words.toLowerCase().trim()
+	if (words.length <= 1) return true
+	const first = words[0]
+	const last = words.slice(-1)
+	if (first !== last) return false
+	if (first === last) return isPalindrome(words.slice(1,-1))
+}
+console.log(isPalindrome('iron ori'))
 
