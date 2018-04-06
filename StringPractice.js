@@ -60,7 +60,7 @@ const removeZero = n => {
 
 const result = reverseInts(120)
 console.log(result)
-
+// find first unique char 
 const findFirstQ = words => {
 	let hash = new Map()
 	let result = ''
@@ -87,3 +87,38 @@ const findFirstQ = words => {
 }
 const first = findFirstQ('hello')
 console.log('first uniqe =', first)
+
+//if one is two's anagram, anagram is very odd... why interviwers are so obsessed with it? 🙃
+const isAnagram = (one, two) => {
+	let bool = true
+	if (one === two) return true
+	if (one.length > two.length) return false
+	if (two.length >= one.length) {
+		let hash = new Map() 
+		//build the hash
+		for (let i = 0; i < two.length; i++){
+			const ele = two[i]
+			if (hash.has(ele)) hash.set(ele, hash.get(ele)+1)
+			else hash.set(ele, 0)
+		}
+		//look up hash from one
+		for (let i = 0; i < one.length; i++){
+			const ele = one[i]
+			const hasKey = hash.has(ele)
+			if(!hasKey){
+				bool = false; 
+				break
+			}
+			if(hash.get(ele) < 0){
+				bool = false; 
+				break
+			}
+		  if(hasKey){
+		  	hash.set(ele, hash.get(ele)-1) //decrease
+		  } 
+		}
+	}	
+	return bool
+}
+console.log("isAnagram = ", isAnagram('cat', 'cat you'))
+
