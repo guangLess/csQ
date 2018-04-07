@@ -59,7 +59,7 @@ const removeZero = n => {
 }
 
 const result = reverseInts(120)
-console.log(result)
+//console.log(result)
 // find first unique char 
 const findFirstQ = words => {
 	let hash = new Map()
@@ -120,7 +120,7 @@ const isAnagram = (one, two) => {
 	}	
 	return bool
 }
-console.log("isAnagram = ", isAnagram('cat', 'cat you'))
+//console.log("isAnagram = ", isAnagram('cat', 'cat you'))
 
 const isPalindrome = words => {
 	words = words.toLowerCase().trim()
@@ -130,5 +130,29 @@ const isPalindrome = words => {
 	if (first !== last) return false
 	if (first === last) return isPalindrome(words.slice(1,-1))
 }
-console.log(isPalindrome('iron ori'))
+//console.log(isPalindrome('iron ori'))
 
+// strStr ? haystack? needle? this is hard for non-native-english speakers! whatever
+const strStr = (subStr, str) => {
+	let needle = -1
+  let length = subStr.length
+	
+	if(subStr === '' || str === '') return needle	
+	if(str.indexOf(subStr[i]) === -1) return needle;
+	
+	const index = str.indexOf(subStr[i]) > -1
+	if(index){
+			 if(checkSequence(subStr, words)) needle = index
+			 else(checkSequence(subStr, words.slice(index)))
+	}
+	return needle
+}
+
+const checkSequence(subStr, wordB){
+	let bool = false
+	for(let i = 1; i < subStr.length; i++){
+		if(subStr[i] !== wordB[i]) break
+		else bool = true
+	}
+	return bool
+}
