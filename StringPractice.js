@@ -134,25 +134,33 @@ const isPalindrome = words => {
 
 // strStr ? haystack? needle? this is hard for non-native-english speakers! whatever
 const strStr = (subStr, str) => {
-	let needle = -1
-  let length = subStr.length
-	
-	if(subStr === '' || str === '') return needle	
-	if(str.indexOf(subStr[i]) === -1) return needle;
-	
-	const index = str.indexOf(subStr[i]) > -1
-	if(index){
-			 if(checkSequence(subStr, words)) needle = index
-			 else(checkSequence(subStr, words.slice(index)))
+	console.log(str)
+  let length = subStr.length	
+  let index = str.indexOf(subStr[0])
+
+  if(subStr === '' || str === '') return -1	
+	if(index === -1) return -1
+	//console.log("---->", subStr, str.slice(index+1, str.length), 'index ===', index)	
+	if(index > -1 && str.length > subStr.length) {
+		const isSequencial = checkSequence(subStr, str.slice(index, str.length))
+		if(isSequencial) return index
+		else {
+			// has to start with 1 plus becasue indexes starts with 0, so after the sliced recursive call, indexs(pointer) should no start with 0 within its own collection,
+			// but maybe there is a better way to write it.
+			return (index + 1) + strStr(subStr, str.slice(index+1, str.length))
+		}
 	}
-	return needle
 }
 
-const checkSequence(subStr, wordB){
+const checkSequence = (subStr, wordB) => {
 	let bool = false
 	for(let i = 1; i < subStr.length; i++){
 		if(subStr[i] !== wordB[i]) break
-		else bool = true
+		 else bool = true
 	}
 	return bool
 }
+
+const neelIndex = strStr('ll', 'hello') //hohelohi
+console.log(neelIndex)
+
