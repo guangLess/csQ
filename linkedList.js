@@ -1,5 +1,4 @@
 //linked list problems
-
 function ListNode(val) {
 	this.val = val
 	this.next = null
