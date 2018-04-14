@@ -63,12 +63,31 @@ ListNode.prototype.deleteFromNthBack = function(n) {
 	}
 }
 
+ListNode.prototype.selfReverse = function() {
+	let node = this
+	let previous = null
+	while(node){
+		console.log(node.val)
+		const tempNode = node.next
+		node.next = previous
+		previous = node
+		node = tempNode
+		console.log(tempNode)
+	}
+	return previous
+}
+
 const listA = new ListNode('1')
 listA.next = new ListNode('2')
 listA.next.next = new ListNode('3')
+const re = listA.selfReverse()
+//console.log("==",listA, "--->",re)
+
+/*
 listA.next.next.next = new ListNode('4')
 listA.next.next.next.next = new ListNode('5')
 
 //const node = listA.deleteNode('y')
 listA.deleteFromNthBack(1)
 console.log(listA.next)
+*/
