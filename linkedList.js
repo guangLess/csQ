@@ -67,15 +67,16 @@ ListNode.prototype.selfReverse = function() {
 	let node = this
 	let previous = null
 	while(node){
-		console.log(node.val)
+		//console.log(node.val)
 		const tempNode = node.next
 		node.next = previous
 		previous = node
 		node = tempNode
-		console.log(tempNode)
+		//console.log(tempNode)
 	}
 	return previous
 }
+
 
 const listA = new ListNode('1')
 listA.next = new ListNode('2')
@@ -91,3 +92,63 @@ listA.next.next.next.next = new ListNode('5')
 listA.deleteFromNthBack(1)
 console.log(listA.next)
 */
+
+function mergeLists (listX, listY) {
+	let sumList;
+	let i = listX
+	let j = listY
+	let perviousI = new ListNode(null)
+	let counter = 0
+
+	while(counter < 20){
+		console.log(counter, i.val, j.val, "perviousI =", perviousI)
+			if(j.next === null){
+				//sumList = i
+				break
+			}
+			if(i.next === null){
+				//perviousI.next = j
+				//sumList = perviousI
+				break
+			}
+		if(i.val < j.val) {
+			perviousI = new ListNode(i.val)
+			console.log("---->>>> i<j per =", perviousI, i)
+			i = i.next
+		}
+		if(i.val >= j.val) {
+			//insertToiList(j.val)
+			if(perviousI.val === null) {
+				perviousI.val = j.val
+				perviousI.next = i
+				i = perviousI
+			} else {
+				perviousI.val = j.val
+				perviousI.next = j
+				j.val = null
+				const saveNext = j.next
+			  j.next = null
+			  j = saveNext
+			}
+		}
+		counter ++
+	}
+	return sumList
+}
+
+let listI = new ListNode(2)
+listI.next = new ListNode(5)
+//listI.next.next = new ListNode(6)
+
+let listJ = new ListNode(3)
+listJ.next = new ListNode(7)
+//listJ.next.next = new ListNode(8)
+
+const mergedList = mergeLists(listI, listJ)
+console.log(mergedList)
+
+
+
+
+
+
