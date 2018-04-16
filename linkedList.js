@@ -139,6 +139,19 @@ function mergeLists (listX, listY) {
 // This works is because of JS copy by reference thing... in swift this will not work :( 
 // The more logical way would be write a prototype of add, so there is new list, and kept being added to
 // when collect is iterating to the next when and after comparison.  Errrrr JS!!!!
+const testJSCopyMethod = testV => {
+		let mutableV = new ListNode("h")
+		let copyV = mutableV
+		let counter = 0
+		while(counter < 3){
+			mutableV.next = new ListNode(counter)
+			//console.log(counter, "mutableV =", "copyV =", copyV)
+			mutableV = mutableV.next
+			counter++
+		}
+}
+testJSCopyMethod("x")
+
 const mergeList = (listI, listJ) => {
 		let collect = new ListNode(null)
 		let prev = collect
@@ -164,12 +177,24 @@ const mergeList = (listI, listJ) => {
 	
 	if (i === null) {
     collect.next = j
-    //console.log("---prev- ==", prev)
 	}
 	if (j === null) {
 		collect.next = i
 	}
 	return prev
+}
+//🤩🤩🤩
+//This method is better regardless of taking advantage of the programing language
+const recurMethodMerge = (i, j) => {
+		if (i === null) return j
+		if (j === null) return j
+		if (i.val < j.val){
+			i.next = recurMethodMerge(i.next, j)
+			return i
+		} else {
+			j.next = recurMethodMerge(j.next, i)
+			return j
+		}
 }
 
 let listI = new ListNode(2)
@@ -178,18 +203,8 @@ listI.next = new ListNode(5)
 let listJ = new ListNode(3)
 listJ.next = new ListNode(7)
 
-//const testMerge = mergeList(listI, listJ)
-//console.log("return",testMerge)
+const recurResult = recurMethodMerge(listI, listJ)
+console.log("===re",recurResult)
 
-const testJSCopyMethod = testV => {
-		let mutableV = new ListNode("h")
-		let copyV = mutableV
-		let counter = 0
-		while(counter < 3){
-			mutableV.next = new ListNode(counter)
-			console.log(counter, "mutableV =", "copyV =", copyV)
-			mutableV = mutableV.next
-			counter++
-		}
-}
-testJSCopyMethod("x")
+
+
