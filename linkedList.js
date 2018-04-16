@@ -92,7 +92,7 @@ listA.next.next.next.next = new ListNode('5')
 listA.deleteFromNthBack(1)
 console.log(listA.next)
 */
-
+/*
 function mergeLists (listX, listY) {
 	let sumList;
 	let i = listX
@@ -135,20 +135,61 @@ function mergeLists (listX, listY) {
 	}
 	return sumList
 }
+*/
+// This works is because of JS copy by reference thing... in swift this will not work :( 
+// The more logical way would be write a prototype of add, so there is new list, and kept being added to
+// when collect is iterating to the next when and after comparison.  Errrrr JS!!!!
+const mergeList = (listI, listJ) => {
+		let collect = new ListNode(null)
+		let prev = collect
+
+		let i = listI
+	  let j = listJ
+		let counter = 0
+		while(i !== null && j !== null){
+			 counter++
+			 console.log("counter =", counter, "-->>>>",prev)
+			 if(i.val < j.val) {
+			 collect.next = i
+			 //console.log("---->>>> i<j", i.val, ">>",collect)
+			 i = i.next
+			 collect = collect.next
+		} else {
+			collect.next = j
+			//console.log("----<<<<-- i>j", j.val, ">>",collect)
+			j = j.next
+			collect = collect.next
+		}
+	}
+	
+	if (i === null) {
+    collect.next = j
+    //console.log("---prev- ==", prev)
+	}
+	if (j === null) {
+		collect.next = i
+	}
+	return prev
+}
 
 let listI = new ListNode(2)
 listI.next = new ListNode(5)
-//listI.next.next = new ListNode(6)
 
 let listJ = new ListNode(3)
 listJ.next = new ListNode(7)
-//listJ.next.next = new ListNode(8)
 
-const mergedList = mergeLists(listI, listJ)
-console.log(mergedList)
+//const testMerge = mergeList(listI, listJ)
+//console.log("return",testMerge)
 
-
-
-
-
-
+const testJSCopyMethod = testV => {
+		let mutableV = new ListNode("h")
+		let copyV = mutableV
+		let counter = 0
+		while(counter < 3){
+			mutableV.next = new ListNode(counter)
+			console.log(counter, "mutableV =", "copyV =", copyV)
+			mutableV = mutableV.next
+			counter++
+		}
+}
+testJSCopyMethod("x")
