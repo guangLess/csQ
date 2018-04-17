@@ -196,6 +196,20 @@ const recurMethodMerge = (i, j) => {
 			return j
 		}
 }
+// sudo code not working yet
+const hasCycle = list => {
+	let node = list 
+	let prevNode = null
+	while(node){
+		if(prevNode.val === node.val){
+			return true
+		}
+		prevNode = node
+		node = node.next
+	}
+
+	return true
+}
 
 let listI = new ListNode(2)
 listI.next = new ListNode(5)
@@ -204,7 +218,7 @@ let listJ = new ListNode(3)
 listJ.next = new ListNode(7)
 
 const recurResult = recurMethodMerge(listI, listJ)
-console.log("===re",recurResult)
+//console.log("===re",recurResult)
 
 
 
