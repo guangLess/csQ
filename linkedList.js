@@ -211,6 +211,27 @@ const hasCycle = list => {
 	return true
 }
 
+const isListPalindrome = list => {
+	const listCopy = Object.assign(Object.create(ListNode.prototype), list)
+	let copyNode = listCopy
+
+	let node = list
+	let reversed = null
+	while(node){
+		let temp = node.next
+		
+		node.next = null
+		node.next = reversed // reversed the pointer
+		reversed = node // building up the reversed version
+		
+		node = temp // travel with the original list
+		console.log("reversed =", reversed, "copyNode =", copyNode)//, "\n list =", listCopy)
+		copyNode = copyNode.next
+	}
+	
+	//return Object.is(reversed, listCopy)
+}
+
 let listI = new ListNode(2)
 listI.next = new ListNode(5)
 
@@ -220,5 +241,12 @@ listJ.next = new ListNode(7)
 const recurResult = recurMethodMerge(listI, listJ)
 //console.log("===re",recurResult)
 
+
+let pList = new ListNode(2)
+pList.next = new ListNode(5)
+pList.next.next = new ListNode(2)
+
+const reversed = isListPalindrome(pList)
+console.log(reversed)
 
 
