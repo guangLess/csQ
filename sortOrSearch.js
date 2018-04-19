@@ -19,19 +19,21 @@ const biSearch = isbool => {
 	return function(n){
 		let start = 0
 		let end = n
-		let mid = start + Math.floor(end/2)
-
-		while(mid > 0){
+		while(start < end){
+			let mid = start + Math.floor((end - start)/2)
 			console.log("mid =", mid)
-			if(isbool(mid)) break
+			if(isbool(mid)){
+				//move left
+				end = mid
+			}
 			else{
 				// move to the right/down
-				end = mid
-				mid = start + Math.floor(end/2)
+				start = mid + 1
 			}
 		}
-		return mid
+		return start
 	}
 }
-const isbool = (x) => x === 5
-biSearch(isbool)(11)
+const isbool = (x) => x >= 3
+const result = biSearch(isbool)(11)
+console.log("result =", result)
