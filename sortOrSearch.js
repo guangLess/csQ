@@ -4,6 +4,13 @@ const mergeSort = (m,n) => {
 	for (let i = 0; i < n.length; i++){
 		const eleI = n[i]
 		const eleJ = m[j]
-		if (eleI > eleJ) // insert j to m; j pointer move right j ++
+		if (eleI > eleJ){
+			n.splice(i,0,m[j])
+			j++
+		}
 	}
+	if (m.length > 0) n.concat(m)
+	return n
 }
+const mergedA = mergeSort([2,5,6], [1,6,7])
+console.log(mergedA)
