@@ -13,7 +13,7 @@ const mergeSort = (m,n) => {
 	return n
 }
 const mergedA = mergeSort([2,5,6], [1,6,7,8,9])
-console.log(mergedA)
+//console.log(mergedA)
 
 const biSearch = isbool => {
 	return function(n){
@@ -21,7 +21,7 @@ const biSearch = isbool => {
 		let end = n
 		while(start < end){
 			let mid = start + Math.floor((end - start)/2)
-			console.log("mid =", mid)
+			//console.log("mid =", mid)
 			if(isbool(mid)){
 				//move left
 				end = mid
@@ -36,4 +36,19 @@ const biSearch = isbool => {
 }
 const isbool = (x) => x >= 3
 const result = biSearch(isbool)(11)
-console.log("result =", result)
+//console.log("result =", result)
+
+let menmo = {}
+let f = 0
+const fibN = n => {
+	if (menmo[n]) return menmo[n]
+	if (n<=2) f = 1
+	else {
+		f = fibN(n-1) + fibN(n-2)
+		menmo[n] = f
+	}
+	return f
+}
+
+const fib = fibN(4)
+console.log(fib)
