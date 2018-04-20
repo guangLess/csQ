@@ -50,5 +50,23 @@ const fibN = n => {
 	return f
 }
 
-const fib = fibN(4)
-console.log(fib)
+//const fib = fibN(4)
+//console.log(fib)
+
+//let menmo = {}
+let possiblites = 0
+const steps = n => {
+	if (menmo[n]) return menmo[n]
+	if (n<1) f = 0
+	else {
+		f = 1 + steps(n-1) + steps(n-2) + steps(n-3)
+		menmo[n] = f
+		// menmo[n] = 1 + steps(n-1) + steps(n-2) + steps(n-3)
+	}
+	return f
+}
+const possibleSteps = steps(3)
+console.log(possibleSteps)
+
+
+
