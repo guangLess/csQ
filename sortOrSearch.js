@@ -78,6 +78,7 @@ const maxSubArray = arr => {
 			pointer = i
 			pointerB = i
 		}
+		console.log(max)
 		max = Math.max(max+ arr[i], arr[i])
 		if(tempM < max) {
 			pointerB = i
@@ -87,6 +88,6 @@ const maxSubArray = arr => {
 	}
 	return tempM
 }
-const test_1 = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+const test_1 =  [-1, 2, 3, -3, 4]//[-6,2,-3,-4,-1,-5,-5]//[-2, 1, -3, 4, -1, 2, 1, -5, 4]
 const kAlgo = maxSubArray(test_1)
 console.log(kAlgo)
