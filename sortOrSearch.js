@@ -71,12 +71,24 @@ const possibleSteps = steps(3)
 const maxSubArray = arr => {
 	let tempM = arr[0]
 	let max = arr[0]
+	let pointer = 0
+	let pointerB = 0
 	for (let i = 0; i < arr.length; i++){
 		max = Math.max(max+ arr[i], arr[i])
+		if (tempM < max){
+			pointer = i
+			//console.log("A =",pointer)
+		}
+		if(tempM < max) {
+			pointerB = i
+		// 	pointerB = i
+		// 	console.log("B =", pointerB)
+		 }
 		tempM = Math.max(tempM, max)
+		console.log("B =",pointer, "A=", pointer)
 	}
 	return tempM
 }
-const test_1 = [-2,1,-3,-4,-1,-2,1,-5,-4]
+const test_1 = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 const kAlgo = maxSubArray(test_1)
 console.log(kAlgo)
