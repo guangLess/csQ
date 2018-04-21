@@ -74,18 +74,16 @@ const maxSubArray = arr => {
 	let pointer = 0
 	let pointerB = 0
 	for (let i = 0; i < arr.length; i++){
-		max = Math.max(max+ arr[i], arr[i])
-		if (tempM < max){
+		if (arr[i] > max + arr[i]){
 			pointer = i
-			//console.log("A =",pointer)
+			pointerB = i
 		}
+		max = Math.max(max+ arr[i], arr[i])
 		if(tempM < max) {
 			pointerB = i
-		// 	pointerB = i
-		// 	console.log("B =", pointerB)
-		 }
+			console.log(pointer, pointerB)	 
+		}
 		tempM = Math.max(tempM, max)
-		console.log("B =",pointer, "A=", pointer)
 	}
 	return tempM
 }
