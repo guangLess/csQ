@@ -17,20 +17,13 @@ const isBlanced = root => {
 	//if root.left === null && root.right return false
 	//if root.right === null && root.left return false
 	console.log("--->>",root)
-	// if (root.left === null && root.right === null){
-	//  	console.log("check if", root)
-	// 	return true
-	// } 
 	if(!root) {
-		console.log("!root =", root)
 		return true
 		}
-	if( (root.left && root.right) && ((root.left.val > root.val) || (root.val > root.right.val)))  return false
-	if((root.left && root.right) && (root.left.val < root.val) && (root.val < root.right.val)){
-	 	//console.log("check if")
-	 return isBlanced(root.left) &&	isBlanced(root.right)	
-	}
-
+	if ((root.left != null) && root.left.val > root.val) return false
+	if ((root.right != null) && root.right.val < root.val) return false	
+	if (!isBlanced(root.left) || !isBlanced(root.right)) return false
+	return true
 }
 
 
