@@ -16,26 +16,30 @@ const longPath = root => {
 const isBlanced = root => {
 	//if root.left === null && root.right return false
 	//if root.right === null && root.left return false
-	//console.log(root)
-	if (root.left === null && root.right === null){
-	 	console.log("check if", root)
+	console.log("--->>",root)
+	// if (root.left === null && root.right === null){
+	//  	console.log("check if", root)
+	// 	return true
+	// } 
+	if(!root) {
+		console.log("!root =", root)
 		return true
-	} 
+		}
+	if( (root.left && root.right) && ((root.left.val > root.val) || (root.val > root.right.val)))  return false
 	if((root.left && root.right) && (root.left.val < root.val) && (root.val < root.right.val)){
 	 	//console.log("check if")
-	 isBlanced(root.left)
-	 isBlanced(root.right)	
+	 return isBlanced(root.left) &&	isBlanced(root.right)	
 	}
-	return false
+
 }
 
 
 const root = new Node(9)
 root.left = new Node(3)
 root.right = new Node(20)
-//root.right.left = new Node(15)
-//root.right.right = new Node(25)
-//root.right.right.left = new Node(21)
+// root.right.left = new Node(29)
+// root.right.right = new Node(25)
+// root.right.right.left = new Node(21)
 
 //const num = longPath(root)
 //console.log(num)
