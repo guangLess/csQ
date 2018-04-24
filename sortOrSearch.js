@@ -78,11 +78,11 @@ const maxSubArray = arr => {
 			pointer = i
 			pointerB = i
 		}
-		console.log(max)
+		//console.log(max)
 		max = Math.max(max+ arr[i], arr[i])
 		if(tempM < max) {
 			pointerB = i
-			console.log(pointer, pointerB)	 
+			//console.log(pointer, pointerB)	 
 		}
 		tempM = Math.max(tempM, max)
 	}
@@ -90,4 +90,20 @@ const maxSubArray = arr => {
 }
 const test_1 =  [-1, 2, 3, -3, 4]//[-6,2,-3,-4,-1,-5,-5]//[-2, 1, -3, 4, -1, 2, 1, -5, 4]
 const kAlgo = maxSubArray(test_1)
-console.log(kAlgo)
+//console.log(kAlgo)
+
+// assume items is nicely packed as a 2d array element as [value, weight]
+const items = [[1,1],[4,3],[5,4],[7,5]]
+const getMaxValueDP = (items, limit) => {
+	let menmo = {}
+	let maxV = 0
+
+	for(let j = 0 ; j<limit; j++){
+		for(let i = 0; i< items.length; i++){
+
+		}
+	}
+}
+
+
+
