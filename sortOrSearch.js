@@ -93,13 +93,22 @@ const kAlgo = maxSubArray(test_1)
 //console.log(kAlgo)
 
 // assume items is nicely packed as a 2d array element as [value, weight]
+// limit is a weight limit
 const items = [[1,1],[4,3],[5,4],[7,5]]
 const getMaxValueDP = (items, limit) => {
 	let menmo = {}
 	let maxV = 0
 
-	for(let j = 0 ; j<limit; j++){
+	for(let j = 0 ; j < limit; j++){
 		for(let i = 0; i< items.length; i++){
+			const itemWeight = items[i][1]
+			if(itemWeight > j) menmo[i][j] = 0
+			if(itemWeight <= j) {
+				const itemValue = items[i][0]
+				const partialMax = menmo[i-1][(j - itemWeight)]
+				maxV = Math.max((itemValue + partialMax), menmo[i-1][j])
+				menmo[i][j] = maxV
+			}
 
 		}
 	}
