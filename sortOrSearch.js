@@ -94,25 +94,41 @@ const kAlgo = maxSubArray(test_1)
 
 // assume items is nicely packed as a 2d array element as [value, weight]
 // limit is a weight limit
-const items = [[1,1],[4,3],[5,4],[7,5]]
 const getMaxValueDP = (items, limit) => {
-	let menmo = {}
+	//generate the table width is 0 to the limit val, height is number of items
+	//limit +1, becasue it starts from 0. Maybe starts from 1 is ok.
+
+	let menmo = Array(items.length).fill(Array(limit+1).fill(0))
+	console.log("menmo ==", menmo[0].length)
 	let maxV = 0
-
-	for(let j = 0 ; j < limit; j++){
-		for(let i = 0; i< items.length; i++){
+	//console.log()
+	
+	for(let i = 0; i< items.length; i++){
+  	for(let j = 0 ; j <= limit; j++){
 			const itemWeight = items[i][1]
-			if(itemWeight > j) menmo[i][j] = 0
+			const itemValue = items[i][0]
+			console.log("i=", i, "j =", j, "weight=", itemWeight, "value=", itemValue )
+			//if(itemWeight > j) menmo[i][j] = 0
 			if(itemWeight <= j) {
-				const itemValue = items[i][0]
-				const partialMax = menmo[i-1][(j - itemWeight)]
-				maxV = Math.max((itemValue + partialMax), menmo[i-1][j])
-				menmo[i][j] = maxV
+				//if(menmo[i][j])
+				//console.log("i=", i, menmo[i-1])//j, itemWeight)
+				
+					//const eachTotal = menmo[i]
+					// const prevMax = menmo[i-1][(j - itemWeight)]
+					const leftMax = (i===0) ? itemValue : menmo[i-1][(j - itemWeight)]
+					console.log("leftMax --->",leftMax)
+				  maxV = Math.max((itemValue + leftMax), leftMax)
+				  console.log("maxV --->", maxV)
+				  menmo[i][j] = maxV
 			}
-
 		}
 	}
+	
 }
+
+const items = [[1,1],[4,3],[5,4]]//,[7,5]]
+getMaxValueDP(items,7)
+
 
 
 
