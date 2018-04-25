@@ -100,35 +100,43 @@ const getMaxValueDP = (items, limit) => {
 
 	let menmo = Array(items.length).fill(Array(limit+1).fill(0))
 	console.log("menmo ==", menmo[0].length)
-	let maxV = 0
 	//console.log()
 	
 	for(let i = 0; i< items.length; i++){
+		console.log("----------")
   	for(let j = 0 ; j <= limit; j++){
 			const itemWeight = items[i][1]
 			const itemValue = items[i][0]
-			console.log("i=", i, "j =", j, "weight=", itemWeight, "value=", itemValue )
-			//if(itemWeight > j) menmo[i][j] = 0
-			if(itemWeight <= j) {
-				//if(menmo[i][j])
-				//console.log("i=", i, menmo[i-1])//j, itemWeight)
-				
+			console.log("i=", i, "j =", j, "weight=", itemWeight, "value=", itemValue)
+
+			if(itemWeight > j && i > 0) menmo[i][j] = menmo[i-1][j]
+			if(itemWeight <= j) {				
 					//const eachTotal = menmo[i]
 					// const prevMax = menmo[i-1][(j - itemWeight)]
-					const leftMax = (i===0) ? itemValue : menmo[i-1][(j - itemWeight)]
-					console.log("leftMax --->",leftMax)
-				  maxV = Math.max((itemValue + leftMax), leftMax)
-				  console.log("maxV --->", maxV)
-				  menmo[i][j] = maxV
+					//const leftMax = (i===0) ? itemValue : menmo[i-1][(j - itemWeight)]
+				
+					// const leftMax = (i === 0)? itemValue : menmo[i-1][(j - itemWeight)]
+					// console.log("leftMax --->",leftMax)
+					// const preMax = (i===0) ? itemValue : menmo[i-1][j]
+					// //console.log("preMax =", preMax)
+				 //  maxV = Math.max((itemValue + leftMax), preMax)
+				 //  console.log("maxV --->", maxV)
+				//console.log("itemValue =", itemValue)
+				if(i===0) menmo[i][j] = itemValue
+				if(i>0){
+					let maxV = Math.max((itemValue + menmo[i-1][j]), menmo[i][j-1])
+					menmo[i][j] = maxV
+					}
+					//console.log("maxV --->", menmo[i][j])
+				}
 			}
 		}
-	}
-	
+		console.log(menmo)
 }
 
-const items = [[1,1],[4,3],[5,4]]//,[7,5]]
-getMaxValueDP(items,7)
-
+const items = [[1,1],[4,3]]//,[5,4],[7,5]]
+getMaxValueDP(items,5)
+//FIXME: it is JS thing, menmo got overriden because it is single thread? need to populate table diffrently
 
 
 
