@@ -101,15 +101,22 @@ const getMaxValueDP = (items, limit) => {
 	let menmo = Array(items.length).fill(Array(limit+1).fill(0))
 	console.log("menmo ==", menmo[0].length)
 	//console.log()
-	
+	let table = []
+
 	for(let i = 0; i< items.length; i++){
 		console.log("----------")
+		table.push([])
   	for(let j = 0 ; j <= limit; j++){
 			const itemWeight = items[i][1]
 			const itemValue = items[i][0]
-			console.log("i=", i, "j =", j, "weight=", itemWeight, "value=", itemValue)
+			//console.log("i=", i, "j =", j, "weight=", itemWeight, "value=", itemValue)
 
-			if(itemWeight > j && i > 0) menmo[i][j] = menmo[i-1][j]
+			// if i === 0 do the thing table = .... 
+			// if itemWeight > j // maybe then if it is === 0 and then whatever
+			if(itemWeight > j && i > 0){
+				//table[i].push()
+				menmo[i][j] = menmo[i-1][j]
+			} 
 			if(itemWeight <= j) {				
 					//const eachTotal = menmo[i]
 					// const prevMax = menmo[i-1][(j - itemWeight)]
@@ -122,9 +129,13 @@ const getMaxValueDP = (items, limit) => {
 				 //  maxV = Math.max((itemValue + leftMax), preMax)
 				 //  console.log("maxV --->", maxV)
 				//console.log("itemValue =", itemValue)
-				if(i===0) menmo[i][j] = itemValue
+				if(i===0) {
+					menmo[i][j] = itemValue
+					table[i].push(itemValue)
+				}
 				if(i>0){
 					let maxV = Math.max((itemValue + menmo[i-1][j]), menmo[i][j-1])
+					table[i].push(maxV)
 					menmo[i][j] = maxV
 					}
 					//console.log("maxV --->", menmo[i][j])
@@ -132,6 +143,7 @@ const getMaxValueDP = (items, limit) => {
 			}
 		}
 		console.log(menmo)
+		console.log("table[][]",table)
 }
 
 const items = [[1,1],[4,3]]//,[5,4],[7,5]]
