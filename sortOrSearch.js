@@ -104,7 +104,7 @@ const getMaxValueDP = (items, limit) => {
 	let table = []
 
 	for(let i = 0; i< items.length; i++){
-		console.log("----------")
+		//console.log("----------")
 		table.push([])
   	for(let j = 0 ; j <= limit; j++){
 			const itemWeight = items[i][1]
@@ -117,7 +117,7 @@ const getMaxValueDP = (items, limit) => {
 			// if itemWeight > j // maybe then if it is === 0 and then whatever
 			if(itemWeight > j && i > 0){
 				table[i].push(table[i-1][j])
-				menmo[i][j] = menmo[i-1][j]
+				//menmo[i][j] = menmo[i-1][j]
 			} 
 			if(itemWeight <= j) {				
 					//const eachTotal = menmo[i]
@@ -136,9 +136,12 @@ const getMaxValueDP = (items, limit) => {
 				// 	table[i].push(itemValue)
 				// }
 				if(i>0){
-					let maxV = Math.max((itemValue + menmo[i-1][j]), menmo[i][j-1])
+					console.log("table", table)
+					const prevMax = table[i-1][j-itemWeight]
+					const maxV = Math.max((itemValue + prevMax), table[i][j-1])
+					console.log("maxV =", itemValue, "prevMax", prevMax)
 					table[i].push(maxV)
-					menmo[i][j] = maxV
+					//menmo[i][j] = maxV
 					}
 					//console.log("maxV --->", menmo[i][j])
 				}
@@ -149,7 +152,7 @@ const getMaxValueDP = (items, limit) => {
 }
 
 const items = [[1,1],[4,3]]//,[5,4],[7,5]]
-getMaxValueDP(items,5)
+getMaxValueDP(items,3)
 //FIXME: it is JS thing, menmo got overriden because it is single thread? need to populate table diffrently
 
 
