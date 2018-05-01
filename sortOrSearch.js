@@ -98,10 +98,10 @@ const getMaxValueDP = (items, limit) => {
 	//generate the table width is 0 to the limit val, height is number of items
 	//limit +1, becasue it starts from 0. Maybe starts from 1 is ok.
 
-	let menmo = Array(items.length).fill(Array(limit+1).fill(0))
-	console.log("menmo ==", menmo[0].length)
-	//console.log()
+	// let menmo = Array(items.length).fill(Array(limit+1).fill(0))
+	// console.log("menmo ==", menmo[0].length)
 	let table = []
+	let maxV;
 
 	for(let i = 0; i< items.length; i++){
 		//console.log("----------")
@@ -109,50 +109,29 @@ const getMaxValueDP = (items, limit) => {
   	for(let j = 0 ; j <= limit; j++){
 			const itemWeight = items[i][1]
 			const itemValue = items[i][0]
-			//console.log("i=", i, "j =", j, "weight=", itemWeight, "value=", itemValue)
 			if(i === 0){
 				table[i].push(itemWeight > j ? 0 : itemValue)
 			}
-			// if i === 0 do the thing table = .... 
-			// if itemWeight > j // maybe then if it is === 0 and then whatever
+			
 			if(itemWeight > j && i > 0){
 				table[i].push(table[i-1][j])
-				//menmo[i][j] = menmo[i-1][j]
 			} 
 			if(itemWeight <= j) {				
-					//const eachTotal = menmo[i]
-					// const prevMax = menmo[i-1][(j - itemWeight)]
-					//const leftMax = (i===0) ? itemValue : menmo[i-1][(j - itemWeight)]
-				
-					// const leftMax = (i === 0)? itemValue : menmo[i-1][(j - itemWeight)]
-					// console.log("leftMax --->",leftMax)
-					// const preMax = (i===0) ? itemValue : menmo[i-1][j]
-					// //console.log("preMax =", preMax)
-				 //  maxV = Math.max((itemValue + leftMax), preMax)
-				 //  console.log("maxV --->", maxV)
-				//console.log("itemValue =", itemValue)
-				// if(i===0) {
-				// 	menmo[i][j] = itemValue
-				// 	table[i].push(itemValue)
-				// }
 				if(i>0){
 					console.log("table", table)
 					const prevMax = table[i-1][j-itemWeight]
-					const maxV = Math.max((itemValue + prevMax), table[i][j-1])
-					console.log("maxV =", itemValue, "prevMax", prevMax)
+					maxV = Math.max((itemValue + prevMax), table[i][j-1])
+					//console.log("maxV =", itemValue, "prevMax", prevMax)
 					table[i].push(maxV)
-					//menmo[i][j] = maxV
 					}
-					//console.log("maxV --->", menmo[i][j])
 				}
 			}
 		}
-		console.log(menmo)
-		console.log("table[][]",table)
+		//console.log(table.pop().pop(), maxV)
 }
 
-const items = [[1,1],[4,3]]//,[5,4],[7,5]]
-getMaxValueDP(items,3)
+const items = [[1,1],[4,3],[5,4],[7,5]]
+getMaxValueDP(items,7)
 //FIXME: it is JS thing, menmo got overriden because it is single thread? need to populate table diffrently
 
 
