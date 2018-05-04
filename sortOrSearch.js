@@ -128,8 +128,30 @@ const getMaxValueDP = (items, limit) => {
 		//console.log(table.pop().pop(), maxV)
 }
 
-const items = [[1,1],[4,3],[5,4],[7,5]]
-const max = getMaxValueDP(items,7)
-console.log(max)
+//const items = [[1,1],[4,3],[5,4],[7,5]]
+//const max = getMaxValueDP(items,7)
+//console.log(max)
 
+const bestBuySellDP = (stocks) => {
+	let maxP = 0
+	let currMax = 0
+	for (let i = 0; i < stocks.length; i++) {
+		const tempDiff = stocks[i] - stocks[i-1]
+		//console.log("temp",temp)
+		currMax = Math.max(0, currMax + tempDiff)
+		//maxP = Math.max(maxP, currMax)
+			//const preMax = temp + maxP
+			//maxP = Math.max(preMax, maxP)
+			//console.log("m== =", preMax, maxP, "i=", i)
+	
+		//maxP = 1//Math.max((temp + maxP), maxP)
+		console.log("maxP", currMax)
+	}
+
+	return maxP
+}
+
+const stocks = [2,5,7,1,4,3,1,3]
+
+bestBuySellDP(stocks)
 
