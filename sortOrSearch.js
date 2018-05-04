@@ -138,10 +138,11 @@ const bestBuySellDP = (stocks) => {
 	for (let i = 0; i < stocks.length; i++) {
 		const tempDiff = stocks[i] - stocks[i-1] || 0
 		const tempMax = currMax + tempDiff
+		console.log("---before-------->",currMax, tempMax)
 		currMax = Math.max(0, tempMax)
-		console.log(currMax)
+		console.log("---after-- comparing Max-->",currMax, tempMax)
 		maxP = Math.max(maxP, currMax)
-		console.log("----->>", maxP)
+		//console.log("----->>", maxP)
 	}
 	return maxP
 }
