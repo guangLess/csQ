@@ -29,16 +29,35 @@ const findNumFrom = (arr) => {
 	return missingN
 }
 
-let ele = arr[0]
-const findMissingN = (ele, upperCollection, lowerCollection) => {
-			if(upperCollection.length < 2 || lowerCollection.length < 2) return upperCollection.concate(lowerCollection)
-			else {
-				if(!arr.includes(ele+1)) upperCollection.push(ele + 1)
-				findMissingN(ele+1)
-				if(!arr.includes(ele+1)) lowerCollection.push(ele - 1)
-				findMissingN(ele-1)
-			}
+const arr = [3,0,1]
 
+
+const findMissingN = (ele, upperCollection, lowerCollection) => {
+		// console.log(ele, upperCollection, lowerCollection)
+		// 	if(upperCollection.length < 3 || lowerCollection.length < 3) return upperCollection.concat(lowerCollection)
+		// 	else {
+		// 		if(!arr.includes(ele+1)) upperCollection.push(ele + 1)
+		// 		findMissingN(ele+1, upperCollection, lowerCollection)
+		// 		if(!arr.includes(ele+1)) lowerCollection.push(ele - 1)
+		// 		findMissingN(ele-1, upperCollection, lowerCollection)
+		// 	}
+		const eleT = ele
+		const test = arr.includes(eleT)
+		console.log(test)
+		if(upperCollection.length )
+
+		//upper bound
+		if(!arr.includes(ele+1)) upperCollection.push(ele+1)
+		findMissingN(ele+1, upperCollection, lowerCollection)
+		//lower bound
+		if(!arr.includes(ele-1)) upperCollection.push(ele-1)
+		findMissingN(ele-1, upperCollection, lowerCollection)
 }
 
+var ele = arr[0]
+let upperCollection = []
+let lowerCollection = []
+findMissingN(ele, upperCollection, lowerCollection)
+
 //findNumFrom([3,0,1])
+
