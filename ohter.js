@@ -1,5 +1,5 @@
 //missing num
-
+/*
 const findNumFrom = (arr) => {
 	let missingN
 	
@@ -60,4 +60,26 @@ let lowerCollection = []
 findMissingN(ele, upperCollection, lowerCollection)
 
 //findNumFrom([3,0,1])
+*/
+/*
+  find missing num in an array. 
+	Case one there is only one num missing. And if it is sorted
+	If array is not sorted, sort it first. (merge sort or language method .sort)
+*/
+
+const findTheOnlyOneMissingNum = arr => {
+	let missing
+	let sum = 0
+
+	for(let i = 0; i < arr.length; i++){
+		sum += arr[i]
+	}
+	const lastNum = arr.pop()
+	const expectSum = (lastNum * (lastNum + 1))/2 // equation
+	return expectSum - sum
+}
+
+const n = findTheOnlyOneMissingNum([0,1,3,4,5])
+console.log(n)
+
 
