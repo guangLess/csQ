@@ -64,22 +64,33 @@ findMissingN(ele, upperCollection, lowerCollection)
 /*
   find missing num in an array. 
 	Case one there is only one num missing. And if it is sorted
-	If array is not sorted, sort it first. (merge sort or language method .sort)
+	If array is not sorted, keep track of Max num, then use the same equation
 */
 
 const findTheOnlyOneMissingNum = arr => {
 	let missing
 	let sum = 0
+	let maxLast = 0
 
 	for(let i = 0; i < arr.length; i++){
+		// not sorted -> 
+		 maxLast = Math.max(maxLast, arr[i])
+		//console.log("max =", maxLast)
 		sum += arr[i]
 	}
-	const lastNum = arr.pop()
-	const expectSum = (lastNum * (lastNum + 1))/2 // equation
+	const expectSum = (maxLast * (maxLast + 1))/2 // equation
 	return expectSum - sum
 }
 
-const n = findTheOnlyOneMissingNum([0,1,3,4,5])
+const n = findTheOnlyOneMissingNum([0,1,3,7,6,4,5])
 console.log(n)
 
+/*
+If array is sorted, and it is missing more than one number, 
+then the method is compare array[i] array[i+1]
+*/
+
+/*
+If array is not sorted
+*/
 
