@@ -11,35 +11,78 @@ const shuffle = (a) => {
 }
 shuffle([0,1,2,3,4])
 
-let collect = [] // Nums type
+/*
 let table = {}
-
 const countPrimes = (n) => {
+	let collect = [] // Nums type
   for (let i = 1; i <= n; i++){
   	console.log("----i----", i)
-  	if ([1,2,3].includes(i) && !collect.includes(i)) {
-  		table[i] = [0]
-  		collect.push(i)
-  		console.log("table 123", table)
+  	if([1,2,3].includes(i) && !table.includes(i)) {
+  		table[i] = [1,i] 
+  		collect = [i]
   	} else {
-  		if(isEven) {
-  			if(table[i] === undefined) {
-  				table[i] = [2]
-  			} else {
-  			  console.log("i = ", i, 'table[i] = ', table[i])
-  				table[i].push(2)
+  		// if(isOdd(i)){
+  		// 	//if(i%)
+  		// }
+  		if(!table[i]) table[i] = [1]
+  		if(isEven(i)){
+  			const reminderN = i / 2
+  			console.log("reminderN =", reminderN) 			
+  			table[i].push(2)
+  			const countP = countPrimes(reminderN)
+  			table[i] = table[i].concat(countP)
+  			console.log('countP ===', countP, table[i])
   			}
-  			const remaindingN = (i - 2)
-  			countPrimes(remaindingN)
+  		if(isOdd(i)){
+
   		}
   	}
   }
-  console.log("--end--out loop", table)
+  //console.log("--end--out loop", table)
   return collect
 }
 
 const isEven = n => n%2 === 0
 const isOdd = n => n%2 === 1
 const evenTest = isEven(21)
-const result = countPrimes(4)
+countPrimes(4)
+const result = table
 console.log(result, evenTest)
+*/
+
+const isPrimeNumber = n => {
+	// if n is an interger and smaller than 4 (exclude 4) return true break
+	// check given num is greater than 3
+	for (let i = 2; i <= n; i ++){
+		if (n % i === 0 && i !== n) {
+			return false
+		}
+	}
+	return true
+}
+const test = isPrimeNumber(11)
+console.log(test)
+
+const getAllPrimeS = n => {
+	let table = {}
+	const sRoot = Math.round(Math.sqrt(n))
+	for(let i = 2 ; i <= sRoot; i++){
+		console.log("i=", i)
+		//if(table[i] === undefind) table[i] = true
+		//const baseJ = Math.pow(i,2) 
+		for(let j = (i*i); j <= n; j = (j+i)) {
+			console.log("j -----> ", j)
+		}
+	}
+}
+
+getAllPrimeS(10)
+
+
+
+
+
+
+
+
+
