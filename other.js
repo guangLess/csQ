@@ -67,16 +67,29 @@ const getAllPrimeS = n => {
 	let table = {}
 	const sRoot = Math.round(Math.sqrt(n))
 	for(let i = 2 ; i <= sRoot; i++){
-		console.log("i=", i)
-		//if(table[i] === undefind) table[i] = true
-		//const baseJ = Math.pow(i,2) 
+		//console.log("i=", i)
+		if(table[i] === undefined) table[i] = false
 		for(let j = (i*i); j <= n; j = (j+i)) {
-			console.log("j -----> ", j)
+			//console.log("j -----> ", j)
+			table[j] = false
 		}
 	}
+
+	let collect = []
+	for(let i = 1; i <= n; i ++){
+		if (i <= 3) {
+			table[i] = true
+			collect.push(i)
+		}
+		if (table[i] === undefined) {
+			table[i] = true
+			collect.push(i)
+		}
+	}
+	console.log(collect)
 }
 
-getAllPrimeS(10)
+getAllPrimeS(30)
 
 
 
