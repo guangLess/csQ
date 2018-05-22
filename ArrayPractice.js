@@ -12,13 +12,13 @@ var profit = [3,10,2,15]//[11, 6, 5, 8, 4, 9, 20, 7]
 var minBuy = {val: profit[0], index: 0}
 var gap = 0
 
-for(let i = 0; i < profit.length; i ++){
+for (let i = 0; i < profit.length; i ++){
 	const now = {val: profit[i], index: i}
 	const next = {val: profit[i+1], index: i+1}
 	const currGap = next.val - now.val
 
-	if(now.val < minBuy.val) minBuy = Object.assign({}, now)
-	if(currGap > gap) {
+	if (now.val < minBuy.val) minBuy = Object.assign({}, now)
+	if (currGap > gap) {
 		const tempBest = next.val - minBuy.val
   	 gap = tempBest	
 	}

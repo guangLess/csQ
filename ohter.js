@@ -85,6 +85,14 @@ const findTheOnlyOneMissingNum = arr => {
 const n = findTheOnlyOneMissingNum([0,1,3,7,6,4,5])
 console.log(n)
 
+const findFewMissingNum = arr => {
+	for (let i = 0; i < arr.length; i++){
+		if (arr.indexOf(arr[i]) < 0){
+			console.log("")
+		}
+	}
+}
+
 /*
 If array is sorted, and it is missing more than one number, 
 then the method is compare array[i] array[i+1]
