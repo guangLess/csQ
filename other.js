@@ -91,11 +91,3 @@ const getAllPrimeS = n => {
 
 getAllPrimeS(30)
 
-
-
-
-
-
-
-
-
